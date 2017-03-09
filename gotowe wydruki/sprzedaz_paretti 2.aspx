@@ -1,23 +1,7 @@
-﻿<%@ Import Namespace="System.Diagnostics" %>
-<%@ Import Namespace="Soneta.Types" %>
-<%@ Import Namespace="Soneta.Waluty" %>
-<%@ Import Namespace="Soneta.Kasa" %>
-<%@ Import Namespace="Soneta.Handel" %>
-<%@ Import Namespace="Soneta.Business.App" %>
-<%@ Import Namespace="Soneta.Business.Db" %>
-<%@ Import Namespace="Soneta.Business" %>
-<%@ Import Namespace="Soneta.Core" %>
-<%@ Register TagPrefix="cc1" Namespace="Soneta.Core.Web" Assembly="Soneta.Core.Web" %>
-<%@ Register TagPrefix="ea" Namespace="Soneta.Web" Assembly="Soneta.Web" %>
-
-<%@ Page Language="c#" CodePage="1200" %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-
-    <title>Sprzedaż</title>
-    <script runat="server">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<%@ Import Namespace="System.Diagnostics" %><%@ Import Namespace="Soneta.Types" %><%@ Import Namespace="Soneta.Waluty" %><%@ Import Namespace="Soneta.Kasa" %><%@ Import Namespace="Soneta.Handel" %><%@ Import Namespace="Soneta.Business.App" %><%@ Import Namespace="Soneta.Business.Db" %><%@ Import Namespace="Soneta.Business" %><%@ Import Namespace="Soneta.Core" %><%@ Register TagPrefix="cc1" Namespace="Soneta.Core.Web" Assembly="Soneta.Core.Web" %><%@ Register TagPrefix="ea" Namespace="Soneta.Web" Assembly="Soneta.Web" %><%@ Page Language="c#" CodePage="1200" %><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>Sprzedaż</TITLE>
+<SCRIPT runat="server">
 
         ParametryWydrukuDokumentu parametry;
         [Context]
@@ -321,22 +305,18 @@
 
 
 
-
         
-</script>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta content="Microsoft Visual Studio 7.0" name="GENERATOR" />
-    <meta content="C#" name="CODE_LANGUAGE" />
-    <meta content="JavaScript" name="vs_defaultClientScript" />
-    <meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema" />
-</head>
-<body>
-    <form id="Sprzedaż" method="post" runat="server">
+</SCRIPT>
 
-        <ea:datacontext id="dc" runat="server" typename="Soneta.Handel.DokumentHandlowy,Soneta.Handel"
-            oncontextload="OnContextLoad" rightmargin="-1" leftmargin="-1"></ea:datacontext>
-
-        <ea:datarepeater id="DataRepeater1" runat="server" onbeforerow="DataRepeater1_BeforeRow"
+<META content="text/html; charset=unicode" http-equiv=Content-Type>
+<META name=GENERATOR content="Microsoft Visual Studio 7.0">
+<META name=CODE_LANGUAGE content=C#>
+<META name=vs_defaultClientScript content=JavaScript>
+<META name=vs_targetSchema 
+content=http://schemas.microsoft.com/intellisense/ie5></HEAD>
+<BODY>
+<FORM id=Sprzedaż method=post runat="server"><ea:datacontext id="dc" runat="server" typename="Soneta.Handel.DokumentHandlowy,Soneta.Handel"
+            oncontextload="OnContextLoad" rightmargin="-1" leftmargin="-1"></ea:datacontext><ea:datarepeater id="DataRepeater1" runat="server" onbeforerow="DataRepeater1_BeforeRow"
             rowtypename="Soneta.Handel.KopiaDokumentu,Soneta.Handel" width="100%" height="161px">
             
             <ea:SectionMarker ID="SectionMarker9" runat="server">
@@ -934,7 +914,7 @@
                 <ea:DataLabel ID="OpisWydruku" runat="server" DataMember="Dokument.Wydruk.OpisWydruku" Bold="False"> </ea:DataLabel>
             </p>
            
-            <cc1:ReportFooter ID="Report" runat="server" Height="105px" TheEnd="false" >
+            <cc1:ReportFooter ID="Report" runat="server" Height="105px" TheEnd="false">
                 <Subtitles>
                    
                     <cc1:FooterSubtitle runat="server" Caption="Operator"  ID="stOsoba" SubtitleType="CenterText" Width="50" >
@@ -946,9 +926,7 @@
             </cc1:ReportFooter>
             
             <ea:SectionMarker ID="SectionMarker8" runat="server" SectionType="Footer"> </ea:SectionMarker>
-        </ea:datarepeater>
-
-        <ea:section runat="server" id="SectionRozrachunki" datamember="Wydruk.RozrachunkiKontrahentaVisible">
+        </ea:datarepeater> <ea:section runat="server" id="SectionRozrachunki" datamember="Wydruk.RozrachunkiKontrahentaVisible">
             <ea:PageBreak runat="server"></ea:PageBreak>
                 <em style="font-size: 13px; font-family: Tahoma; ">Wykaz nierozliczonych należności</em>
                 <ea:Grid ID="GridRozrachunki" runat="server" DataMember="Wydruk.RozrachunkiKontrahenta">
@@ -960,7 +938,4 @@
                         <ea:GridColumn runat="server" DataMember="DoRozliczenia" Caption="Pozostaje" Width="15" Align="Right" Total="Sum"></ea:GridColumn>
                     </Columns>
                 </ea:Grid>
-        </ea:section>
-    </form>
-</body>
-</html>
+        </ea:section></FORM></BODY></HTML>
