@@ -1,134 +1,135 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <%@ import Namespace="Soneta.Kadry" %><%@ import Namespace="Soneta.Place" %><%@ import Namespace="Soneta.Kadry" %><%@ import Namespace="Soneta.KadryPlace" %><%@ import Namespace="Soneta.Core" %><%@ import Namespace="Soneta.Tools" %><%@ import Namespace="Soneta.Types" %><%@ import Namespace="Soneta.Kalend" %><%@ import Namespace="Soneta.Business" %><%@ import Namespace="System.ComponentModel" %><%@ Register TagPrefix="ea" Namespace="Soneta.Web" Assembly="Soneta.Web" %><%@ Register TagPrefix="eb" Namespace="Soneta.Core.Web" Assembly="Soneta.Core.Web" %><%@ Page language="c#" AutoEventWireup="false" codePage="1200" %><HTML><HEAD><TITLE>UmowaParetti</TITLE>
 <SCRIPT runat="server">
-// <![CDATA[
-	static int umowaID = 0;
-	static int id;
+    // <![CDATA[
+    static int umowaID = 0;
+    static int id;
 
 
-	void dc_ContextLoading(object sender, EventArgs e) {
-		try {
-			if (Request.QueryString.Get("UmowaID") != string.Empty)
-				umowaID = Convert.ToInt32(Request.QueryString.Get("UmowaID"));
+    void dc_ContextLoading(object sender, EventArgs e) {
+        try {
+            if (Request.QueryString.Get("UmowaID") != string.Empty)
+                umowaID = Convert.ToInt32(Request.QueryString.Get("UmowaID"));
 
 
-		}
+        }
 
-		catch { }
-		if (umowaID != 0) {
-			KadryModule km = KadryModule.GetInstance(dc);
-			UmowaHistoria uh = km.UmowaHistorie[umowaID];
-
-
-			if (uh != null) {
-				dc.Context[typeof(UmowaHistoria)] = uh;
-				dc.Context[typeof(Umowa)] = uh.Umowa;
+        catch { }
+        if (umowaID != 0) {
+            KadryModule km = KadryModule.GetInstance(dc);
+            UmowaHistoria uh = km.UmowaHistorie[umowaID];
 
 
-			}
-		}
-	}
-
-	void dc_ContextLoad(object sender, EventArgs e) {
+            if (uh != null) {
+                dc.Context[typeof(UmowaHistoria)] = uh;
+                dc.Context[typeof(Umowa)] = uh.Umowa;
 
 
-		UmowaHistoria umowaHist = (UmowaHistoria)dc[typeof(UmowaHistoria)];
-		Pracownik prac = (Pracownik)dc[typeof(Pracownik)];
+            }
+        }
+    }
+
+    void dc_ContextLoad(object sender, EventArgs e) {
 
 
-
-
-		Umowa umowa = umowaHist.Umowa;
-		PracHistoria ph = umowa.PracHistoria;
-		Pracownik pr = umowa.Pracownik;
-
-		data.EditValue = pr.Features["1"].ToString();
-
-
-
-		Ankieta(pr);
-
-		DanePracownika(ph);
-		//  data.EditValue = DateTime.Now.ToString("yyyy-MM-dd");
+        UmowaHistoria umowaHist = (UmowaHistoria)dc[typeof(UmowaHistoria)];
+        Pracownik prac = (Pracownik)dc[typeof(Pracownik)];
 
 
 
 
+        Umowa umowa = umowaHist.Umowa;
+        PracHistoria ph = umowa.PracHistoria;
+        Pracownik pr = umowa.Pracownik;
 
-	}
+        
 
-	void Ankieta(Pracownik pr)
-	{
-		
-			CheckLabel.EditValue = (bool)pr.Features["1"];
-			CheckLabel1.EditValue = !((bool)pr.Features["1"]);
-		
-			CheckLabel2.EditValue = (bool)pr.Features["2"];
-			CheckLabel3.EditValue = !((bool)pr.Features["2"]);
+        Ankieta(pr);
+        DanePracownika(ph);
+        //  data.EditValue = DateTime.Now.ToString("yyyy-MM-dd");
 
-
-			CheckLabel4.EditValue = (bool)pr.Features["3"];
-			CheckLabel5.EditValue = !((bool)pr.Features["3"]);
-		
-			CheckLabel6.EditValue = (bool)pr.Features["4"];
-			CheckLabel7.EditValue = !((bool)pr.Features["4"]);
-			
-			CheckLabel8.EditValue = (bool)pr.Features["5"];
-			CheckLabel9.EditValue = !((bool)pr.Features["5"]);
-
-		
-			CheckLabel10.EditValue = (bool)pr.Features["6"];
-			CheckLabel11.EditValue = !((bool)pr.Features["6"]);
-			
-			CheckLabel12.EditValue = (bool)pr.Features["7"];
-			CheckLabel13.EditValue = !((bool)pr.Features["7"]);
-		
-
-	}
-
-	void DanePracownika(PracHistoria ph)
-	{
-		string imie = ph.Imie;
-		string nazwisko = ph.Nazwisko;
-
-		string adresDoKorespondencjiUlica = ph.AdresZamieszkania.Ulica;
-		string adresDoKorespondencjiNrDomu = ph.AdresZamieszkania.NrDomu;
-		string adresDoKorespondencjiNrLokalu = " ";
-		string adresZameldowaniaNrLokalu = " ";
-
-		string adresDoKorespondencjikodPocztowy = ph.AdresZamieszkania.KodPocztowyS;
-		string adresDoKorespondencjiMiejscowosc = ph.AdresZamieszkania.Miejscowosc;
-
-		if(ph.AdresZamieszkania.NrLokalu!="")
-		{
-			adresDoKorespondencjiNrLokalu = "/"+ph.AdresZamieszkania.NrLokalu;
-		}
-		if(ph.AdresZameldowania.NrLokalu!="")
-		{
-			AdresZameldowaniaNrLokalu.EditValue = "/"+ph.AdresZameldowania.NrLokalu;
-		}
+       
+       if (Convert.ToString(umowa.Wydzial) != "Nutricia (NU)") 
+       punk23.EditValue ="<LI><DIV class=auto-style2 align=justify><FONT size=2>Zleceniobiorcy nie wolno zawierać żadnych umów cywilnoprawnych ani umów o pracę bezpośrednio, ani przez  osoby trzecie lub Firmy trzecie z Przedsiębiorcą (§ 3 umowy zlecenia), do  którego skierowany jest w ramach niniejszej umowy w okresie jej obowiązywania  oraz przez okres 2 lat od jej wygaśnięcia. W przypadku naruszenia tego  postanowienia Zleceniobiorca zapłaci Zleceniodawcy karę umowną w wysokości  1000zł.</FONT></DIV>";
 
 
 
-		if(adresDoKorespondencjiUlica=="" || adresDoKorespondencjikodPocztowy=="" || adresDoKorespondencjiMiejscowosc =="")
-		{
-			AdresKorespondencji.Visible = false;
-			AdresKorespondencjiUlica.Visible = false;
-			AdresKorespondencjiKodPocztowy.Visible = false;
-			AdresKorespondencjiMiejscowosc.Visible = false;
-		}
-
-		AdresKorespondencji.EditValue = "Adres korespondencji";
-		AdresKorespondencjiMiejscowosc.EditValue = "miejscowość : " + adresDoKorespondencjiMiejscowosc;
-		AdresKorespondencjiKodPocztowy.EditValue = "kod pocztowy : " + adresDoKorespondencjikodPocztowy;
-		AdresKorespondencjiUlica.EditValue = "ulica : " + adresDoKorespondencjiUlica + " " + adresDoKorespondencjiNrDomu +adresDoKorespondencjiNrLokalu;
 
 
-	}
+    }
+
+    void Ankieta(Pracownik pr)
+    {
+        
+        CheckLabel.EditValue = (bool)pr.Features["1"];
+        CheckLabel1.EditValue = !((bool)pr.Features["1"]);
+
+        CheckLabel2.EditValue = (bool)pr.Features["2"];
+        CheckLabel3.EditValue = !((bool)pr.Features["2"]);
+
+
+        CheckLabel4.EditValue = (bool)pr.Features["3"];
+        CheckLabel5.EditValue = !((bool)pr.Features["3"]);
+
+        CheckLabel6.EditValue = (bool)pr.Features["4"];
+        CheckLabel7.EditValue = !((bool)pr.Features["4"]);
+
+        CheckLabel8.EditValue = (bool)pr.Features["5"];
+        CheckLabel9.EditValue = !((bool)pr.Features["5"]);
+
+
+        CheckLabel10.EditValue = (bool)pr.Features["6"];
+        CheckLabel11.EditValue = !((bool)pr.Features["6"]);
+
+        CheckLabel12.EditValue = (bool)pr.Features["7"];
+        CheckLabel13.EditValue = !((bool)pr.Features["7"]);
+        
+
+    }
+
+    void DanePracownika(PracHistoria ph)
+    {
+        string imie = ph.Imie;
+        string nazwisko = ph.Nazwisko;
+
+        string adresDoKorespondencjiUlica = ph.AdresZamieszkania.Ulica;
+        string adresDoKorespondencjiNrDomu = ph.AdresZamieszkania.NrDomu;
+        string adresDoKorespondencjiNrLokalu = " ";
+        string adresZameldowaniaNrLokalu = " ";
+
+        string adresDoKorespondencjikodPocztowy = ph.AdresZamieszkania.KodPocztowyS;
+        string adresDoKorespondencjiMiejscowosc = ph.AdresZamieszkania.Miejscowosc;
+
+        if(ph.AdresZamieszkania.NrLokalu!="")
+        {
+            adresDoKorespondencjiNrLokalu = "/"+ph.AdresZamieszkania.NrLokalu;
+        }
+        if(ph.AdresZameldowania.NrLokalu!="")
+        {
+            AdresZameldowaniaNrLokalu.EditValue = "/"+ph.AdresZameldowania.NrLokalu;
+        }
 
 
 
-// ]]>
+        if(adresDoKorespondencjiUlica=="" || adresDoKorespondencjikodPocztowy=="" || adresDoKorespondencjiMiejscowosc =="")
+        {
+            AdresKorespondencji.Visible = false;
+            AdresKorespondencjiUlica.Visible = false;
+            AdresKorespondencjiKodPocztowy.Visible = false;
+            AdresKorespondencjiMiejscowosc.Visible = false;
+        }
+
+        AdresKorespondencji.EditValue = "Adres korespondencji";
+        AdresKorespondencjiMiejscowosc.EditValue = "miejscowość : " + adresDoKorespondencjiMiejscowosc;
+        AdresKorespondencjiKodPocztowy.EditValue = "kod pocztowy : " + adresDoKorespondencjikodPocztowy;
+        AdresKorespondencjiUlica.EditValue = "ulica : " + adresDoKorespondencjiUlica + " " + adresDoKorespondencjiNrDomu +adresDoKorespondencjiNrLokalu;
+
+
+    }
+
+
+
+    // ]]>
 </SCRIPT>
 
 <META name=CODE_LANGUAGE content=C#>
@@ -357,15 +358,9 @@ sp. z o.o. sp.k.</STRONG><BR></P>
   <DIV class=auto-style2 align=justify><FONT size=2>Ewentualne spory wynikłe z 
   realizacji umowy zlecenia strony poddadzą sądowi właściwemu miejscowo ze 
   względu na siedzibę Zleceniodawcy.</FONT></DIV>
-  <LI>
-  <DIV class=auto-style2 align=justify><FONT size=2>Zleceniobiorcy nie wolno 
-  zawierać żadnych umów cywilnoprawnych ani umów o pracę bezpośrednio, ani przez 
-  osoby trzecie lub Firmy trzecie z Przedsiębiorcą (§ 3 umowy zlecenia), do 
-  którego skierowany jest w ramach niniejszej umowy w okresie jej obowiązywania 
-  oraz przez okres 2 lat od jej wygaśnięcia. W przypadku naruszenia tego 
-  postanowienia Zleceniobiorca zapłaci Zleceniodawcy karę umowną w wysokości 
-  1000zł.</FONT></DIV>
-  <LI>
+  
+     <ea:DataLabel runat="server" ID="punk23" Bold="false"></ea:DataLabel>
+   <LI>
   <DIV align=justify><FONT size=2>Zleceniobiorca oświadcza, że jest świadomy 
   różnic między zatrudnieniem opartym na stosunku pracy, a świadczeniem usług 
   opartym na cywilnoprawnym stosunku zobowiązań stanowiącym podstawę zawarcia 
