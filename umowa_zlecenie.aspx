@@ -46,8 +46,7 @@
 
         Ankieta(pr);
         DanePracownika(ph);
-        //  data.EditValue = DateTime.Now.ToString("yyyy-MM-dd");
-
+        //data.EditValue = umowa.data;
        
        if (Convert.ToString(umowa.Wydzial) != "Nutricia (NU)") 
        punk23.EditValue ="<LI><DIV class=auto-style2 align=justify><FONT size=2>Zleceniobiorcy nie wolno zawierać żadnych umów cywilnoprawnych ani umów o pracę bezpośrednio, ani przez  osoby trzecie lub Firmy trzecie z Przedsiębiorcą (§ 3 umowy zlecenia), do  którego skierowany jest w ramach niniejszej umowy w okresie jej obowiązywania  oraz przez okres 2 lat od jej wygaśnięcia. W przypadku naruszenia tego  postanowienia Zleceniobiorca zapłaci Zleceniodawcy karę umowną w wysokości  1000zł.</FONT></DIV>";
@@ -92,25 +91,26 @@
         string imie = ph.Imie;
         string nazwisko = ph.Nazwisko;
 
-        string adresDoKorespondencjiUlica = ph.AdresZamieszkania.Ulica;
-        string adresDoKorespondencjiNrDomu = ph.AdresZamieszkania.NrDomu;
-        string adresDoKorespondencjiNrLokalu = " ";
-        string adresZameldowaniaNrLokalu = " ";
+       // string adresDoKorespondencjiUlica = ph.AdresZamieszkania.Ulica;
+       // string adresDoKorespondencjiNrDomu = ph.AdresZamieszkania.NrDomu;
+      //  string adresDoKorespondencjiNrLokalu = " ";
+      //  string adresZameldowaniaNrLokalu = " ";
 
-        string adresDoKorespondencjikodPocztowy = ph.AdresZamieszkania.KodPocztowyS;
-        string adresDoKorespondencjiMiejscowosc = ph.AdresZamieszkania.Miejscowosc;
-
+     //   string adresDoKorespondencjikodPocztowy = ph.AdresZamieszkania.KodPocztowyS;
+    //    string adresDoKorespondencjiMiejscowosc = ph.AdresZamieszkania.Miejscowosc;
+    /*
         if(ph.AdresZamieszkania.NrLokalu!="")
         {
             adresDoKorespondencjiNrLokalu = "/"+ph.AdresZamieszkania.NrLokalu;
         }
+        */
         if(ph.AdresZameldowania.NrLokalu!="")
         {
             AdresZameldowaniaNrLokalu.EditValue = "/"+ph.AdresZameldowania.NrLokalu;
         }
 
 
-
+/*
         if(adresDoKorespondencjiUlica=="" || adresDoKorespondencjikodPocztowy=="" || adresDoKorespondencjiMiejscowosc =="")
         {
             AdresKorespondencji.Visible = false;
@@ -125,8 +125,8 @@
         AdresKorespondencjiUlica.EditValue = "ulica : " + adresDoKorespondencjiUlica + " " + adresDoKorespondencjiNrDomu +adresDoKorespondencjiNrLokalu;
 
 
+*/
     }
-
 
 
     // ]]>
@@ -142,9 +142,9 @@ content=http://schemas.microsoft.com/intellisense/ie5></HEAD>
 <P class=auto-style1 align=center style:=" text-align:center"><FONT 
 size=6><STRONG>Umowa zlecenia nr <ea:DataLabel runat="server" DataMember="Numer.Pelny" EncodeHTML="True" ID="NumerPelny"></ea:DataLabel></STRONG></FONT></P>
 <P class=auto-style1 align=justify style:=" text-align:center">Zawarta w dniu 
-<ea:DataLabel runat="server" EncodeHTML="True" ID="data"> </ea:DataLabel> w Opolu pomiędzy firmą <STRONG>PARETTI 
-&nbsp;Sp. z o.o. sp.k. z siedzibą w Opolu, ul. Oleska 7, NIP: 7543074437, REGON: 
-161544360</STRONG>, zwanym dalej Zleceniodawcą, a:</P>
+<ea:DataLabel runat="server" EncodeHTML="True" ID="data"> </ea:DataLabel> <ea:DataLabel runat=server DataMember="Last.Umowa.Data" EncodeHTML="True"></ea:DataLabel>&nbsp;w Opolu pomiędzy firmą 
+<STRONG>PARETTI &nbsp;Sp. z o.o. sp.k. z siedzibą w Opolu, ul. Oleska 7, NIP: 
+7543074437, REGON: 161544360</STRONG>, zwanym dalej Zleceniodawcą, a:</P>
 <TABLE style="WIDTH: 485px; TABLE-LAYOUT: fixed; undefined: " align=center>
   <COLGROUP>
   <COL style="WIDTH: 285px">
@@ -164,7 +164,7 @@ size=6><STRONG>Umowa zlecenia nr <ea:DataLabel runat="server" DataMember="Numer.
     <TD>NFZ (numer) : <ea:DataLabel runat="server" DataMember="Last.Umowa.PracHistoria.OddzialNFZ.Kod" EncodeHTML="True" ID="OddzialNfz"></ea:DataLabel></TD></TR>
   <TR>
     <TD>Data urodzenia : <ea:DataLabel runat="server" DataMember="PracHistoria.Urodzony.Data" EncodeHTML="True" ID="DataUrodzenia"></ea:DataLabel></TD>
-    <TD>Urząd Skarbowy : </TD></TR>
+    <TD>Urząd Skarbowy : <ea:DataLabel runat=server DataMember="PracHistoria.Podatki.UrzadSkarbowy.Nazwa" EncodeHTML="True"></ea:DataLabel></TD></TR>
   <TR>
     <TD>Miejsce urodzenia : <ea:DataLabel runat="server" DataMember="PracHistoria.Urodzony.Miejsce" EncodeHTML="True" ID="MiejsceUrodzenia"></ea:DataLabel></TD>
     <TD>email : </TD></TR>
@@ -175,19 +175,18 @@ size=6><STRONG>Umowa zlecenia nr <ea:DataLabel runat="server" DataMember="Numer.
     <TD>
       <P align=center><STRONG>Adres zameldowania</STRONG></P></TD>
     <TD>
-      <P align=center><STRONG><ea:DataLabel runat="server" EncodeHTML="True" ID="AdresKorespondencji"></ea:DataLabel> 
-</STRONG></P></TD></TR>
+      <P align=center>&nbsp;</P></TD></TR>
   <TR>
     <TD>ulica : <ea:DataLabel runat="server" DataMember="PracHistoria.AdresZameldowania.Ulica" EncodeHTML="True" ID="AdresZameldowaniaUlica"></ea:DataLabel>&nbsp; 
       <ea:DataLabel runat="server" DataMember="PracHistoria.AdresZameldowania.NrDomu" EncodeHTML="True" ID="AderesZameldowaniaNrDomu"></ea:DataLabel><ea:DataLabel runat="server" EncodeHTML="True" ID="AdresZameldowaniaNrLokalu"></ea:DataLabel></TD>
-    <TD><ea:DataLabel runat="server" EncodeHTML="True" ID="AdresKorespondencjiUlica"></ea:DataLabel> </TD></TR>
+    <TD>&nbsp;</TD></TR>
   <TR>
     <TD>kod pocztowy : <ea:DataLabel runat="server" DataMember="PracHistoria.AdresZameldowania.KodPocztowy" EncodeHTML="True" ID="AdresZameldowaniaKodPocztowy"></ea:DataLabel></TD>
     <TD>
-      <P><ea:DataLabel runat="server" EncodeHTML="True" ID="AdresKorespondencjiKodPocztowy"></ea:DataLabel></P></TD></TR>
+      <P>&nbsp;</P></TD></TR>
   <TR>
     <TD>miejscowość : <ea:DataLabel runat="server" DataMember="Pracownik.Workers.Info.Historia.AdresZameldowania.Miejscowosc" EncodeHTML="True" ID="AdresZameldowaniaMiejscowosc"></ea:DataLabel></TD>
-    <TD><ea:DataLabel runat="server" EncodeHTML="True" ID="AdresKorespondencjiMiejscowosc"></ea:DataLabel></TD></TR></TBODY></TABLE>
+    <TD>&nbsp;</TD></TR></TBODY></TABLE>
 <P><FONT face="Tahoma, sans-serif"></FONT>&nbsp;<FONT 
 face="Tahoma, sans-serif">Nr Konta Bankowego: <ea:DataLabel runat=server DataMember="Pracownik.EtatGłówny.Rachunki" EncodeHTML="True"></ea:DataLabel></P></FONT>
 <P class=western><FONT face="Tahoma, sans-serif">Zwanym dalej 
@@ -242,7 +241,7 @@ wyraża zgodę na włączenie go do treści umowy.</P>
 <P align=left>3. Zleceniobiorca zobowiązuje się do wykonania samodzielnie oraz 
 bez nadzoru na zlecenie Zleceniodawcy&nbsp; </P>
 <P align=left>następujących czynności: <ea:DataLabel runat=server DataMember="Last.Umowa.Tytul" EncodeHTML="True"></ea:DataLabel></P>
-<P align=left>Przedsiębiorca i Miejsce wykonywania zlecenia: <ea:DataLabel runat=server DataMember="PracHistoria.Etat.Wydzial.Nazwa" EncodeHTML="True"></ea:DataLabel></P>
+<P align=left>Przedsiębiorca i Miejsce wykonywania zlecenia: <ea:DataLabel runat=server DataMember="Wydzial.Nazwa" EncodeHTML="True"></ea:DataLabel></P>
 <P align=left>Termin wykonania zlecenia od <ea:datalabel id="Datalabel43" runat="server" DataMember="Okres.From"> </ea:datalabel> do dnia <ea:datalabel id="Datalabel44" runat="server" DataMember="Okres.To"> </ea:datalabel> 
 
 <P align=left>Za wynagrodzeniem : <ea:DataLabel runat=server DataMember="Last.Wartosc" EncodeHTML="True"></ea:DataLabel>&nbsp;( <ea:DataLabel runat=server DataMember="RodzajRozliczenia" EncodeHTML="True"></ea:DataLabel>&nbsp;)</P>
@@ -357,10 +356,8 @@ sp. z o.o. sp.k.</STRONG><BR></P>
   <LI>
   <DIV class=auto-style2 align=justify><FONT size=2>Ewentualne spory wynikłe z 
   realizacji umowy zlecenia strony poddadzą sądowi właściwemu miejscowo ze 
-  względu na siedzibę Zleceniodawcy.</FONT></DIV>
-  
-     <ea:DataLabel runat="server" ID="punk23" Bold="false"></ea:DataLabel>
-   <LI>
+  względu na siedzibę Zleceniodawcy.</FONT></DIV><ea:DataLabel runat="server" ID="punk23" Bold="false"></ea:DataLabel> 
+  <LI>
   <DIV align=justify><FONT size=2>Zleceniobiorca oświadcza, że jest świadomy 
   różnic między zatrudnieniem opartym na stosunku pracy, a świadczeniem usług 
   opartym na cywilnoprawnym stosunku zobowiązań stanowiącym podstawę zawarcia 
