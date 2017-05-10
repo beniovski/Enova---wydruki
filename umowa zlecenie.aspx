@@ -33,7 +33,7 @@
         [Caption("Reprez. pracodawcę 2")]
         [Priority(20)]
         public string Pracodowca2 {
-            get { return pracodowca2; }
+            get { return pracodowca2; }<asp:Menu runat="server"></asp:Menu>
             set {
                 if (pracodowca2.Length > 80)
                     pracodowca2 = pracodowca2.Substring(0, 80);

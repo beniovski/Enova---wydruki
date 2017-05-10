@@ -36,36 +36,41 @@
         Pracownik prac = (Pracownik)dc[typeof(Pracownik)];
 
 
-
-
         Umowa umowa = umowaHist.Umowa;
         PracHistoria ph = umowa.PracHistoria;
         Pracownik pr = umowa.Pracownik;
 
-        
+
 
         Ankieta(pr);
         DanePracownika(ph);
         //data.EditValue = umowa.data;
-       
-       if (Convert.ToString(umowa.Wydzial) != "Nutricia (NU)") 
-       punk23.EditValue ="<LI><DIV class=auto-style2 align=justify><FONT size=2>Zleceniobiorcy nie wolno zawierać żadnych umów cywilnoprawnych ani umów o pracę bezpośrednio, ani przez  osoby trzecie lub Firmy trzecie z Przedsiębiorcą (§ 3 umowy zlecenia), do  którego skierowany jest w ramach niniejszej umowy w okresie jej obowiązywania  oraz przez okres 2 lat od jej wygaśnięcia. W przypadku naruszenia tego  postanowienia Zleceniobiorca zapłaci Zleceniodawcy karę umowną w wysokości  1000zł.</FONT></DIV>";
 
+        if (Convert.ToString(umowa.Wydzial.Nadrzedny) != "Nutricia (NU)")
+        {
+            punk23.EditValue = "<LI><DIV class=auto-style2 align=justify><FONT size=2>Zleceniobiorcy nie wolno zawierać żadnych umów cywilnoprawnych ani umów o pracę bezpośrednio, ani przez  osoby trzecie lub Firmy trzecie z Przedsiębiorcą (§ 3 umowy zlecenia), do  którego skierowany jest w ramach niniejszej umowy w okresie jej obowiązywania  oraz przez okres 2 lat od jej wygaśnięcia. W przypadku naruszenia tego  postanowienia Zleceniobiorca zapłaci Zleceniodawcy karę umowną w wysokości  1000zł.</FONT></DIV>";
+        }
 
-
+        if(Convert.ToString(umowa.Wydzial.Nadrzedny) == "Nutricia (NU)")
+        {
+            WydzialNazwa.EditValue = umowa.Wydzial.Nadrzedny.Nazwa;
+        }
+        else
+        {
+            WydzialNazwa.EditValue = umowa.Wydzial.Nazwa;
+        }
 
 
     }
 
     void Ankieta(Pracownik pr)
     {
-        
+
         CheckLabel.EditValue = (bool)pr.Features["1"];
         CheckLabel1.EditValue = !((bool)pr.Features["1"]);
 
         CheckLabel2.EditValue = (bool)pr.Features["2"];
         CheckLabel3.EditValue = !((bool)pr.Features["2"]);
-
 
         CheckLabel4.EditValue = (bool)pr.Features["3"];
         CheckLabel5.EditValue = !((bool)pr.Features["3"]);
@@ -76,13 +81,12 @@
         CheckLabel8.EditValue = (bool)pr.Features["5"];
         CheckLabel9.EditValue = !((bool)pr.Features["5"]);
 
-
         CheckLabel10.EditValue = (bool)pr.Features["6"];
         CheckLabel11.EditValue = !((bool)pr.Features["6"]);
 
         CheckLabel12.EditValue = (bool)pr.Features["7"];
         CheckLabel13.EditValue = !((bool)pr.Features["7"]);
-        
+
 
     }
 
@@ -91,41 +95,41 @@
         string imie = ph.Imie;
         string nazwisko = ph.Nazwisko;
 
-       // string adresDoKorespondencjiUlica = ph.AdresZamieszkania.Ulica;
-       // string adresDoKorespondencjiNrDomu = ph.AdresZamieszkania.NrDomu;
-      //  string adresDoKorespondencjiNrLokalu = " ";
-      //  string adresZameldowaniaNrLokalu = " ";
+        // string adresDoKorespondencjiUlica = ph.AdresZamieszkania.Ulica;
+        // string adresDoKorespondencjiNrDomu = ph.AdresZamieszkania.NrDomu;
+        //  string adresDoKorespondencjiNrLokalu = " ";
+        //  string adresZameldowaniaNrLokalu = " ";
 
-     //   string adresDoKorespondencjikodPocztowy = ph.AdresZamieszkania.KodPocztowyS;
-    //    string adresDoKorespondencjiMiejscowosc = ph.AdresZamieszkania.Miejscowosc;
-    /*
-        if(ph.AdresZamieszkania.NrLokalu!="")
-        {
-            adresDoKorespondencjiNrLokalu = "/"+ph.AdresZamieszkania.NrLokalu;
-        }
-        */
+        //   string adresDoKorespondencjikodPocztowy = ph.AdresZamieszkania.KodPocztowyS;
+        //    string adresDoKorespondencjiMiejscowosc = ph.AdresZamieszkania.Miejscowosc;
+        /*
+            if(ph.AdresZamieszkania.NrLokalu!="")
+            {
+                adresDoKorespondencjiNrLokalu = "/"+ph.AdresZamieszkania.NrLokalu;
+            }
+            */
         if(ph.AdresZameldowania.NrLokalu!="")
         {
             AdresZameldowaniaNrLokalu.EditValue = "/"+ph.AdresZameldowania.NrLokalu;
         }
 
 
-/*
-        if(adresDoKorespondencjiUlica=="" || adresDoKorespondencjikodPocztowy=="" || adresDoKorespondencjiMiejscowosc =="")
-        {
-            AdresKorespondencji.Visible = false;
-            AdresKorespondencjiUlica.Visible = false;
-            AdresKorespondencjiKodPocztowy.Visible = false;
-            AdresKorespondencjiMiejscowosc.Visible = false;
-        }
+        /*
+                if(adresDoKorespondencjiUlica=="" || adresDoKorespondencjikodPocztowy=="" || adresDoKorespondencjiMiejscowosc =="")
+                {
+                    AdresKorespondencji.Visible = false;
+                    AdresKorespondencjiUlica.Visible = false;
+                    AdresKorespondencjiKodPocztowy.Visible = false;
+                    AdresKorespondencjiMiejscowosc.Visible = false;
+                }
 
-        AdresKorespondencji.EditValue = "Adres korespondencji";
-        AdresKorespondencjiMiejscowosc.EditValue = "miejscowość : " + adresDoKorespondencjiMiejscowosc;
-        AdresKorespondencjiKodPocztowy.EditValue = "kod pocztowy : " + adresDoKorespondencjikodPocztowy;
-        AdresKorespondencjiUlica.EditValue = "ulica : " + adresDoKorespondencjiUlica + " " + adresDoKorespondencjiNrDomu +adresDoKorespondencjiNrLokalu;
+                AdresKorespondencji.EditValue = "Adres korespondencji";
+                AdresKorespondencjiMiejscowosc.EditValue = "miejscowość : " + adresDoKorespondencjiMiejscowosc;
+                AdresKorespondencjiKodPocztowy.EditValue = "kod pocztowy : " + adresDoKorespondencjikodPocztowy;
+                AdresKorespondencjiUlica.EditValue = "ulica : " + adresDoKorespondencjiUlica + " " + adresDoKorespondencjiNrDomu +adresDoKorespondencjiNrLokalu;
 
 
-*/
+        */
     }
 
 
@@ -241,7 +245,7 @@ wyraża zgodę na włączenie go do treści umowy.</P>
 <P align=left>3. Zleceniobiorca zobowiązuje się do wykonania samodzielnie oraz 
 bez nadzoru na zlecenie Zleceniodawcy&nbsp; </P>
 <P align=left>następujących czynności: <ea:DataLabel runat=server DataMember="Last.Umowa.Tytul" EncodeHTML="True"></ea:DataLabel></P>
-<P align=left>Przedsiębiorca i Miejsce wykonywania zlecenia: <ea:DataLabel runat=server DataMember="Wydzial.Nazwa" EncodeHTML="True"></ea:DataLabel></P>
+<P align=left>Przedsiębiorca i Miejsce wykonywania zlecenia: <ea:DataLabel runat=server ID="WydzialNazwa" EncodeHTML="True"></ea:DataLabel></P>
 <P align=left>Termin wykonania zlecenia od <ea:datalabel id="Datalabel43" runat="server" DataMember="Okres.From"> </ea:datalabel> do dnia <ea:datalabel id="Datalabel44" runat="server" DataMember="Okres.To"> </ea:datalabel> 
 
 <P align=left>Za wynagrodzeniem : <ea:DataLabel runat=server DataMember="Last.Wartosc" EncodeHTML="True"></ea:DataLabel>&nbsp;( <ea:DataLabel runat=server DataMember="RodzajRozliczenia" EncodeHTML="True"></ea:DataLabel>&nbsp;)</P>
@@ -370,7 +374,7 @@ sp. z o.o. sp.k.</STRONG><BR></P>
   celów marketingowych zgodnie z ustawą z dnia 29.08.1997 r. o ochronie danych 
   osobowych Dz.Ust. Nr 133 poz. 883. Zleceniobiorca oświadcza, że został 
   poinformowany o możliwość wglądu do swoich danych osobowych, ich poprawiania i 
-  usuwania.<BR></FONT></DIV></LI></OL>
+  usuwania.<BR>&nbsp; </FONT></DIV></LI></OL>
 <P>&nbsp;</P>
 <P>Podpis Zleceniobiorcy: _____________________________ </P>
 <P>&nbsp;</P></FORM></BODY></HTML>
