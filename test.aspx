@@ -1,4 +1,4 @@
-﻿<%@ import Namespace="Soneta.Business" %>
+﻿ <%@ import Namespace="Soneta.Business" %>
 <%@ import Namespace="Soneta.Types" %>
 <%@ import Namespace="Soneta.Kadry" %>
 <%@ import Namespace="Soneta.Place" %>
@@ -126,6 +126,10 @@
                           colDni.AddLine(skg.Dni);
                           AddWartosc(skg.Wartosc);*/
                     }
+
+                    ArgumentException ae = new ArgumentException();
+
+
                     else
                     {
                         WypSkladnikPomniejszenie skp = sk as WypSkladnikPomniejszenie;

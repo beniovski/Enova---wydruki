@@ -248,7 +248,7 @@ bez nadzoru na zlecenie Zleceniodawcy&nbsp; </P>
 <P align=left>Przedsiębiorca i Miejsce wykonywania zlecenia: <ea:DataLabel runat=server ID="WydzialNazwa" EncodeHTML="True"></ea:DataLabel></P>
 <P align=left>Termin wykonania zlecenia od <ea:datalabel id="Datalabel43" runat="server" DataMember="Okres.From"> </ea:datalabel> do dnia <ea:datalabel id="Datalabel44" runat="server" DataMember="Okres.To"> </ea:datalabel> 
 
-<P align=left>Za wynagrodzeniem : <ea:DataLabel runat=server DataMember="Last.Wartosc" EncodeHTML="True"></ea:DataLabel>&nbsp;( <ea:DataLabel runat=server DataMember="RodzajRozliczenia" EncodeHTML="True"></ea:DataLabel>&nbsp;)</P>
+<P align=left>Za wynagrodzeniem : <ea:DataLabel runat=server DataMember="Last.Wartosc" EncodeHTML="True"></ea:DataLabel>&nbsp; <ea:DataLabel runat=server DataMember="Last.TypWartosci" EncodeHTML="True"></ea:DataLabel>&nbsp;( <ea:DataLabel runat=server DataMember="RodzajRozliczenia" EncodeHTML="True"></ea:DataLabel>&nbsp;) </P>
 <P align=left>&nbsp;</P>
 <P>Podpis Zleceniodawcy _______________________ Podpis Zleceniobiorcy 
 _______________________</P>
@@ -377,4 +377,55 @@ sp. z o.o. sp.k.</STRONG><BR></P>
   usuwania.<BR>&nbsp; </FONT></DIV></LI></OL>
 <P>&nbsp;</P>
 <P>Podpis Zleceniobiorcy: _____________________________ </P>
+<P><ea:PageBreak runat=server></ea:PageBreak></P>
+<P class=western style="MARGIN-BOTTOM: 0cm; MARGIN-LEFT: 0.66cm; LINE-HEIGHT: 150%" align=left>&nbsp;</P>
+<P dir=ltr><SPAN><U>Oświadczenie Pracownika Tymczasowego o dotychczasowym zatrudnieniu:</U></SPAN></P>
+<P dir=ltr><SPAN>Pracownik Tymczasowy oświadcza, że w okresie 36 miesięcy poprzedzających zawarcie niniejszej umowy:</SPAN></P>
+<TABLE style="WIDTH: auto; TABLE-LAYOUT: fixed; undefined: ">
+    <TBODY>
+        <tr>
+            <td valign="top"><ea:CheckLabel runat=server></ea:CheckLabel></td>
+            <td> <P class=western style="MARGIN-BOTTOM: 0cm; MARGIN-LEFT: 0.66cm; LINE-HEIGHT: 150%" align=left>
+    Nie wykonywał pracy na rzecz Pracodawcy Użytkownika w związku z czym nie posiada zaświadczeń dokumentujących okres pracy tymczasowej 
+    świadczonej na rzecz Pracodawcy użytkownika
+</P> </td>
+        </tr>
+          </TBODY>
+</TABLE>
+
+        <TABLE style="WIDTH: auto; TABLE-LAYOUT: fixed; undefined: ">
+    <TBODY>
+         <tr>
+            <td valign="top"><ea:CheckLabel runat=server></ea:CheckLabel></td>
+            <td><P class=western style="MARGIN-BOTTOM: 0cm; MARGIN-LEFT: 0.66cm; LINE-HEIGHT: 150%" align=left>    
+    Wykonywał na rzecz Pracodawcy Użytkownika pracę na podstawie umowy o pracę w wymiarze………………./umowy zlecenia w wymiarze………………………… 
+    Na potwierdzenie powyższego przedkłada komplet zaświadczeń dokumentujących okres pracy tymczasowej świadczonej na rzecz Pracodawcy Użytkownika
+</P>            </td>
+        </tr>
+
+    </TBODY>
+</TABLE>
+
+</P>   
+
+<P><BR><STRONG>Informacja – kontakt z Agencją Pracy</STRONG></P>
+    <ol>
+        <li>Biuro agencji znajduje się przy ulicy Oleskiej 7 w Opolu, jest otwarte od poniedziałku do piątku, w godzinach od 8:00 do 16:00 z wyłączeniem dni ustawowo wolnych od pracy</li>
+        <li>Adres email służący do kontaktu z agencją to: opole@paretti.pl</li>
+        <li>Numer telefonu służący do kontaktu z agencją to: 77 544 99 99</li>
+        <li>We wskazanych w pkt. 1 godzinach możliwy jest również kontakt telefoniczny z agencją oraz poprzez pocztę email</li>
+    </ol>
+    <p>
+        &nbsp;</p>
+</FORM>
+<P class=western 
+style="MARGIN-BOTTOM: 0cm; MARGIN-LEFT: 0.66cm; LINE-HEIGHT: 150%" 
+align=left>data _______________________ Podpis 
+Pracownika_______________________</P>
+
+
+
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
 <P>&nbsp;</P></FORM></BODY></HTML>
